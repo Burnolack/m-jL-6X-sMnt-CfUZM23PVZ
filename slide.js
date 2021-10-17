@@ -23,10 +23,17 @@ $(document.body, '#slider').on('mouseup touchend', function (event) {
 	}
 	setTimeout(function(){
 		(async() => {
-			let x = 0;
-			x = await score();
-			if (x) {
-				API(x);
+			let XjgTNm9SzBvsJc5N = 0;
+			XjgTNm9SzBvsJc5N = await score();
+			if (XjgTNm9SzBvsJc5N) {
+				var token = document.getElementsByName("csrfToken").value;
+                $.ajax({
+                    type : "POST",
+                    data : {'AIM_CHECKMATE': "1", "CSRF-T" : token, "CHECKMATE": XjgTNm9SzBvsJc5N},
+                    success: function(data) {
+                        document.body.innerHTML = data;
+                }
+            });
 			}
 		})()
 	}, 0);
